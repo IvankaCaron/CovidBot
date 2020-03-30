@@ -7,6 +7,8 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from stop_words import get_stop_words
 
+#nltk.download('punkt') # first-time use only
+#nltk.download('wordnet') # first-time use only
 
 def tokens():
     # import du texte & nettoyages

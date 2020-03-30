@@ -1,19 +1,19 @@
 from flask import Flask, render_template
-from subprocess import check_output
-
+from socket import gethostname
+#from flask_socketio import SocketIO
 from flask_socketio import SocketIO
 import json
 
-import preprocessing 
+import multiPreprocessing 
 import covidBot 
 
-phrases_nettoyees = preprocessing.tokens_net()
-sent_tokens = preprocessing.tokens()
-tfidf = preprocessing.matrix_tfidf_fit(phrases_nettoyees)
-phrases_tf = preprocessing.matrix_tfidf_trans(tfidf, phrases_nettoyees)
+phrases_nettoyees = multiPreprocessing.tokens_net()
+sent_tokens = multiPreprocessing.tokens()
+tfidf = multiPreprocessing.matrix_tfidf_fit(phrases_nettoyees)
+phrases_tf = multiPreprocessing.matrix_tfidf_trans(tfidf, phrases_nettoyees)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '#ensemblealamaison'
+app.config['SECRET_KEY'] = 'ensemblealamaison'
 socketio = SocketIO(app)
 
 
@@ -60,5 +60,7 @@ def handle_message(data, methods=['GET', 'POST']):
     socketio.emit('my response', response, callback=messageReceived)
 
 
+
+    
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app)   
