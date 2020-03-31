@@ -4,3 +4,13 @@ Dans ce cas pratique on va essayer d'entraîner un chatbot qui permette de répo
 
 to run:
 python app.py
+
+anaconda:
+conda create -n chatbot python=3.6
+conda activate chatbot
+
+pythonanywhere:
+python3.6 -m venv env
+source ./env/bin/activate 
+
+pip install -r requirements.txt
